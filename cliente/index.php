@@ -9,6 +9,7 @@
 </head>
 <body>
     <div class="container">
+        <button class="btn btn-primary" ><a href="./login.php" >Login</a></button>
         <h1 class="my-4">Lista de Alumnos</h1>
 
         <form method="get" action="index.php">

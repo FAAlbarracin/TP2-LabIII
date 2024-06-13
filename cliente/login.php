@@ -9,6 +9,7 @@
 </head>
 <body>
     <div class="container">
+        <button class="btn btn-primary" ><a href="./index.php" >Indice</a></button>
         <h1 class="my-4">Agregar Alumno</h1>
         
         <form action="login.php" method="post">
