@@ -43,7 +43,7 @@
             echo '</tbody>';
             echo '</table>';
         } else {
-            echo '<p>No hay alumnos registrados.</p>';
+            echo '<p>No hay coincidencias.</p>';
         }
     }
     ?>
@@ -116,6 +116,40 @@
     }
 
     ?>
+
+<form method="post" action="registro_de_marcas.php">
+        <div>
+            <input type="text" name="marcaBorrar" required>
+            <button name="borrar">Borrar</button>
+        </div>
+    </form>
+
+    <?php
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["borrar"])) {
+        $borrar = isset($_POST['marcaBorrar']) ? $_POST['marcaBorrar'] : '';
+
+        $url = 'http://localhost/TP2-LabIII/server/autos/borrado_marcas.php';
+        $data = array('marca' => $borrar);
+        $options = array(
+            'http' => array(
+                'header' => "Content-type: application/json\r\n",
+                'method' => 'POST',
+                'content' => json_encode($data),
+            ),
+        );
+        $context = stream_context_create($options);
+        $result = @file_get_contents($url, false, $context);
+        if ($result === FALSE) {
+            echo '<p>Error al borrar la marca.</p>';
+        } else {
+            $response = json_decode($result, true);
+            echo '<p>' . htmlspecialchars($response['message']) . '</p>';
+            // Recargar la página para reflejar los cambios
+    
+        }
+    }
+
+    ?>    
 </body>
 
 </html>
