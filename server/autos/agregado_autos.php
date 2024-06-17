@@ -13,7 +13,7 @@ if (!empty($data)) {
     $result = $stmtFilter->fetch(PDO::FETCH_ASSOC);
 
     if ($result === false) {
-        $query = "INSERT INTO autos (Dominio, Marca, Modelo, `Año de fabricación`, Kilometraje) VALUES (:dominio, :marca, :modelo, :fabricacion, :km)";
+        $query = "INSERT INTO autos (Dominio, Marca, Modelo, Fabricacion, Kilometraje) VALUES (:dominio, :marca, :modelo, :fabricacion, :km)";
         $stmt = $db->prepare($query);
 
         $stmt->bindValue(":dominio", $data->dominio, PDO::PARAM_STR);
